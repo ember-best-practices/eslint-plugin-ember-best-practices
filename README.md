@@ -1,6 +1,6 @@
 # Ember-strict-mode
 
-This adds more guard rails for Ember. While Ember is written a Turning complete laguage (JavaScript), just because something "works" does not mean it is correct or in line with the framework's programming model. These footguns include:
+This adds more guard rails for Ember. Just because something "works" does not mean it is correct or in line with the framework's programming model. These footguns include:
 
 - Not adhereing to Data Down Actions Up
 - Side-efffect programming
