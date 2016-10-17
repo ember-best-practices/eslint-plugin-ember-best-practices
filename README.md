@@ -1,11 +1,21 @@
-# Ember-best-practices
+# Ember-strict-mode
 
-This README outlines the details of collaborating on this Ember addon.
+This adds more guard rails for Ember. While Ember is written a Turning complete laguage (JavaScript), just because something "works" does not mean it is correct or in line with the framework's programming model. These footguns include:
+
+- Not adhereing to Data Down Actions Up
+- Side-efffect programming
+- Usage of Mixins
+- Usage of Sub-Classes
+- Eager/Lazy injections
+- Warnings and deprecations are failing tests
+
+# Why
+As we've scaled out to over hundreds developers and hundrends of lines of code it has become clear that more "development time" guidance is required. While the guides do a good job about getting started, it's good to have some friction to make sure the app code is aligned with how Ember works.
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd ember-best-practices`
+* `cd ember-strict-mode`
 * `npm install`
 * `bower install`
 
