@@ -9,7 +9,7 @@ This adds more guard rails for Ember. Just because something "works" does not me
 - Computed properties without dependent keys
 
 # Why
-As we've scaled out to over hundreds developers and hundrends of lines of code it has become clear that more "development time" guidance is required. While the guides do a good job about getting started, it's good to have some friction to make sure the app code is aligned with how Ember works.
+As we've scaled out to over hundreds developers and thousands of lines of code it has become clear that more "development time" guidance is required. While the guides do a good job about getting started, it's good to have some friction to make sure the app code is aligned with how Ember works.
 
 ## Using the plugin with Ember CLI
 
