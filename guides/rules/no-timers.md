@@ -16,12 +16,23 @@ can accomplish the rough equivalent of `setInterval` by using a recursive `setTi
 Example:
 
 ```js
-const interval = 1000;
+Ember.Component.extend({
+  init() {
+   this._super(...arguments);
+   this.intervalToken = this.schedule(() => alert('Alert'));
+   this.interval = 1000;
+  }
 
-(function run() {
-	Ember.run.later(function() {
-    // do work
-		run();
-	}, interval);
-})();
+  schedule(fn) {
+    return Ember.run.later(() => {
+      fn()
+      this.set('intervalToken', this.schedule(fn));
+    }, this.interval);
+  }
+
+  willDestroy() {
+    this._super(...arguments);
+    Ember.run.cancel(this.intervalToken);
+  }  
+});
 ```
