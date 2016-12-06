@@ -3,7 +3,7 @@ const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
 
-ruleTester.run('no-action-cp', rule, {
+ruleTester.run('no-side-efffect-cp', rule, {
   valid: [
     {
       code: `
