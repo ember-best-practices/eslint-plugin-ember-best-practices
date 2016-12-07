@@ -1,4 +1,4 @@
-# No Unguarded Window References
+# No Unguarded Window References (LinkedIn specific)
 
 **TL;DR: Ensure that all window references are guarded inside an if block with the condition `environment.isBrowser()`**
 

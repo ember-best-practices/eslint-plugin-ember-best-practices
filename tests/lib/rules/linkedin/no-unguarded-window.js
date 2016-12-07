@@ -1,4 +1,4 @@
-const rule = require('../../../lib/rules/no-unguarded-window');
+const rule = require('../../../lib/rules/linkedin/no-unguarded-window');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
