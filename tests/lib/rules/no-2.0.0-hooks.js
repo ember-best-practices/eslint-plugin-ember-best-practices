@@ -1,9 +1,9 @@
-const rule = require('../../../lib/rules/no-action-cp');
+const rule = require('../../../lib/rules/no-2.0.0-hooks');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
 
-ruleTester.run('no-action-cp', rule, {
+ruleTester.run('no-2.0.0-hooks', rule, {
   valid: [
     {
       code: `
@@ -26,11 +26,10 @@ ruleTester.run('no-action-cp', rule, {
     {
       code: `
         export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            this.sendAction('baz')
-          })
+          didInitAttrs() {
+            this._super(...arguments);
+            this.nope = true;
+          }
         });`,
       parserOptions: {
         ecmaVersion: 6,
@@ -43,11 +42,10 @@ ruleTester.run('no-action-cp', rule, {
     {
       code: `
         export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            this.send('baz')
-          })
+          didReceiveAttrs() {
+            this._super(...arguments);
+            this.nope = true;
+          }
         });`,
       parserOptions: {
         ecmaVersion: 6,
@@ -60,11 +58,10 @@ ruleTester.run('no-action-cp', rule, {
     {
       code: `
         export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            this.sendEvent('baz')
-          })
+          didUpdateAttrs() {
+            this._super(...arguments);
+            this.nope = true;
+          }
         });`,
       parserOptions: {
         ecmaVersion: 6,
@@ -77,11 +74,10 @@ ruleTester.run('no-action-cp', rule, {
     {
       code: `
         export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            Ember.sendEvent('baz')
-          })
+          didRender() {
+            this._super(...arguments);
+            this.nope = true;
+          }
         });`,
       parserOptions: {
         ecmaVersion: 6,
@@ -94,11 +90,10 @@ ruleTester.run('no-action-cp', rule, {
     {
       code: `
         export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            Em.sendEvent('baz')
-          })
+          didUpdate() {
+            this._super(...arguments);
+            this.nope = true;
+          }
         });`,
       parserOptions: {
         ecmaVersion: 6,
@@ -110,13 +105,27 @@ ruleTester.run('no-action-cp', rule, {
     },
     {
       code: `
-        import { sendEvent } from "@ember/object/events"
         export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            sendEvent('baz')
-          })
+          willUpdate() {
+            this._super(...arguments);
+            this.nope = true;
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          willRender() {
+            this._super(...arguments);
+            this.nope = true;
+          }
         });`,
       parserOptions: {
         ecmaVersion: 6,
