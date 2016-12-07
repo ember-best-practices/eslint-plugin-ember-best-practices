@@ -12,8 +12,9 @@ Example:
 
 ```js
 import Ember from 'ember';
+import environment from 'ember-stdlib/utils/environment';
 
-Ember.component.extend({
+Ember.Component.extend({
   init() {
     if (environment.isBrowser()) {
       this.location = window.location;
