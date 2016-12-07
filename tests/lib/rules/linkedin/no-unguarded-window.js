@@ -1,4 +1,4 @@
-const rule = require('../../../lib/rules/linkedin/no-unguarded-window');
+const rule = require('../../../../lib/rules/linkedin/no-unguarded-window');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
@@ -16,6 +16,78 @@ ruleTester.run('no-unguarded-window', rule, {
                 const location = window.location;
               }
             }
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
+    },
+    {
+      code: `
+        import environment from 'ember-stdlib/utils/environment';
+
+        export default Ember.Component.extend({
+          actions: {
+            guarded() {
+                const location = window.location;
+            }
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
+    },
+    {
+      code: `
+        import environment from 'ember-stdlib/utils/environment';
+
+        export default Ember.Component.extend({
+          willRender() {
+              const location = window.location;
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
+    },
+    {
+      code: `
+        import environment from 'ember-stdlib/utils/environment';
+
+        export default Ember.Component.extend({
+          didRender() {
+              const location = window.location;
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
+    },
+    {
+      code: `
+        import environment from 'ember-stdlib/utils/environment';
+
+        export default Ember.Component.extend({
+          willInsertElement() {
+              const location = window.location;
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
+    },
+    {
+      code: `
+        import environment from 'ember-stdlib/utils/environment';
+
+        export default Ember.Component.extend({
+          didInsertElement() {
+              const location = window.location;
           }
         });`,
       parserOptions: {
@@ -62,10 +134,8 @@ ruleTester.run('no-unguarded-window', rule, {
     {
       code: `
         export default Ember.Component({
-          actions: {
-            unguarded() {
-              const location = window.location;
-            }
+          didUpdateAttrs() {
+            const location = window.location;
           }
         });`,
       parserOptions: {
