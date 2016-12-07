@@ -1,4 +1,4 @@
-const rule = require('../../../lib/rules/no-unguarded-document');
+const rule = require('../../../../lib/rules/linkedin/no-unguarded-document');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
@@ -37,23 +37,6 @@ ruleTester.run('no-timers', rule, {
     }
   ],
   invalid: [
-    {
-      code: `
-        export default Ember.Component({
-          actions: {
-            bar() {
-              const node = document.querySelector('blah');
-            }
-          }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
-      errors: [{
-        message: MESSAGE
-      }]
-    },
     {
       code: `
         export default Ember.Component({
