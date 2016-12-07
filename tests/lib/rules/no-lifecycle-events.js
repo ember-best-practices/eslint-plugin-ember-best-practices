@@ -40,6 +40,7 @@ ruleTester.run('no-lifecycle-events', rule, {
     },
     {
       code: `
+        import Ember from 'ember';
         const { on } = Ember;
         export default Ember.Component({
           registerFocus: on('didInsertElement', function() {
