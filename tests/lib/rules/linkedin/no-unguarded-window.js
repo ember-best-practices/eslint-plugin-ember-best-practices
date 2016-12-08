@@ -128,6 +128,48 @@ ruleTester.run('no-unguarded-window', rule, {
         ecmaVersion: 6,
         sourceType: 'module'
       }
+    },
+    {
+      code: `
+        import Ember from 'ember';
+        import environment from 'ember-stdlib/utils/environment';
+        const { isBrowser } = environment 
+
+        export default Ember.Component.extend({
+          init() {
+            this._super(...arguments);
+            if (isBrowser()) {
+              let allTheTacos = true;
+            }
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
+    },
+    {
+      code: `
+        import Ember from 'ember';
+        let troll = {
+          isBrowser() { return 'under bridge' }
+        }
+
+        export default Ember.Component.extend({
+          init() {
+            this._super(...arguments);
+            if (troll.isBrowser()) {
+              let attachUnsuspectingLoser = true;
+            }
+          }
+        })`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
     }
   ],
   invalid: [
@@ -153,6 +195,29 @@ ruleTester.run('no-unguarded-window', rule, {
             const location = window.location;
           }
         });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+        let troll = {
+          isBrowser() { return 'under bridge' }
+        }
+
+        export default Ember.Component.extend({
+          init() {
+            this._super(...arguments);
+            if (troll.isBrowser()) {
+              let location = window.location;
+            }
+          }
+        })`,
       parserOptions: {
         ecmaVersion: 6,
         sourceType: 'module'

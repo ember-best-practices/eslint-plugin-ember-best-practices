@@ -8,7 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha --recursive tests"
+    "test": "mocha --recursive tests",
+    "test-server": "mocha --recursive --growl --watch tests"
   },
   "repository": "",
   "engines": {
