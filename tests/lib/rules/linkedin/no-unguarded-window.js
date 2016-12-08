@@ -30,7 +30,7 @@ ruleTester.run('no-unguarded-window', rule, {
         export default Ember.Component.extend({
           actions: {
             guarded() {
-                const location = window.location;
+              const location = window.location;
             }
           }
         });`,
@@ -45,7 +45,7 @@ ruleTester.run('no-unguarded-window', rule, {
 
         export default Ember.Component.extend({
           willRender() {
-              const location = window.location;
+            const location = window.location;
           }
         });`,
       parserOptions: {
@@ -59,7 +59,7 @@ ruleTester.run('no-unguarded-window', rule, {
 
         export default Ember.Component.extend({
           didRender() {
-              const location = window.location;
+            const location = window.location;
           }
         });`,
       parserOptions: {
@@ -73,7 +73,7 @@ ruleTester.run('no-unguarded-window', rule, {
 
         export default Ember.Component.extend({
           willInsertElement() {
-              const location = window.location;
+            const location = window.location;
           }
         });`,
       parserOptions: {
@@ -87,7 +87,7 @@ ruleTester.run('no-unguarded-window', rule, {
 
         export default Ember.Component.extend({
           didInsertElement() {
-              const location = window.location;
+            const location = window.location;
           }
         });`,
       parserOptions: {
@@ -139,7 +139,7 @@ ruleTester.run('no-unguarded-window', rule, {
           init() {
             this._super(...arguments);
             if (isBrowser()) {
-              let allTheTacos = true;
+              const location = window.location;
             }
           }
         });`,
@@ -159,7 +159,7 @@ ruleTester.run('no-unguarded-window', rule, {
           init() {
             this._super(...arguments);
             if (troll.isBrowser()) {
-              let attachUnsuspectingLoser = true;
+              let attackUnsuspectingLoser = true;
             }
           }
         })`,
