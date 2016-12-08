@@ -1,4 +1,4 @@
-const rule = require('../../../lib/rules/no-timers');
+const rule = require('../../../../lib/rules/linkedin/no-timers');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
