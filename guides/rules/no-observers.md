@@ -11,7 +11,7 @@ Observers suffer from several issues when building applications at scale. These 
 To unroll what this means consider the example below.
 
 ```
-Compontent.extend({
+Component.extend({
   firstName: 'Chad',
   lastName: 'Hietala',
   fullName: undefined,
@@ -30,12 +30,12 @@ this.set('lastName', 'Penner');
 <---------------------------------------- Now `fullName` is Stefan Penner
 ```
 
-Sense observers eagerly compute we have this period in time where we have computed a `fullName` that is not what actually care about.  When we introduce many observers into an application this problem compounds on it's self.
+Since observers eagerly compute we have this period in time where we have computed a `fullName` that is not what we actually care about. When we introduce many observers into an application this problem compounds on itself.
 
-In contrast a computed property is lazily computed and memoized. This means that `firstName` and `lastName` can freely mutate and only when we do `this.get('fullName');` will the function body of the computed property will run. This gives us a clear caller in terms of why the body of why `fullName` was recomputed.
+In contrast a computed property is lazily computed and memoized. This means that `firstName` and `lastName` can freely mutate and only when we do `this.get('fullName');` will the function body of the computed property run. This gives us a clear caller in terms of why the body of `fullName` was recomputed.
 
 ```
-Compontent.extend({
+Component.extend({
   firstName: 'Chad',
   lastName: 'Hietala',
   fullName: computed('firstName', 'lastName', function() {
