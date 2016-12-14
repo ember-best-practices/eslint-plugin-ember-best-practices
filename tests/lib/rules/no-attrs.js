@@ -3,7 +3,7 @@ const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
 
-ruleTester.run('no-observers', rule, {
+ruleTester.run('no-attrs', rule, {
   valid: [
     {
       code: `
