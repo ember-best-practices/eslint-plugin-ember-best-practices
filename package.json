@@ -18,8 +18,6 @@
   "author": "",
   "license": "MIT",
   "keywords": [
-    "ember",
-    "ember-addon",
     "eslint",
     "eslintplugin",
     "eslint-plugin"
