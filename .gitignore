@@ -10,6 +10,7 @@
 
 # misc
 /.sass-cache
+/.nyc_output
 /connect.lock
 /coverage/*
 /libpeerconnection.log

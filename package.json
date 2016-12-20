@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-ember-best-practices",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Eslint rules for linting for anti-patterns in Ember applications.",
   "main": "lib/index.js",
   "directories": {
@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha --recursive tests",
+    "test": "nyc mocha --recursive tests",
     "test-server": "mocha --recursive --growl --watch tests"
   },
   "repository": "",
@@ -25,7 +25,8 @@
   "devDependencies": {
     "eslint": "^3.11.1",
     "mocha": "^3.2.0",
-    "mocha-eslint": "^3.0.1"
+    "mocha-eslint": "^3.0.1",
+    "nyc": "^10.0.0"
   },
   "dependencies": {
     "requireindex": "^1.1.0"
