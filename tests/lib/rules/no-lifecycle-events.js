@@ -12,7 +12,10 @@ ruleTester.run('no-lifecycle-events', rule, {
             this.$().on('focus', () => {
               alert('sss');
             });
-          }
+          },
+          myCustomEvent: Ember.on('customEvent', function() {
+            alert('sj08');
+          })
         });`,
       parserOptions: {
         ecmaVersion: 6,
