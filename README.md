@@ -18,7 +18,7 @@ As we've scaled out to over hundreds developers and thousands of lines of code i
 Install the plugin as a dev dependency in your Ember CLI project.
 
 ```
-npm install --save-dev eslint-plugin-ember-suave
+npm install --save-dev eslint-plugin-ember-best-practices
 ```
 
 This will make the plugin available to ESLint.
