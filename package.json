@@ -11,7 +11,7 @@
     "test": "nyc mocha --recursive tests",
     "test-server": "mocha --recursive --growl --watch tests"
   },
-  "repository": "",
+  "repository": "chadhietala/ember-best-practices",
   "engines": {
     "node": ">= 6.0.0"
   },
