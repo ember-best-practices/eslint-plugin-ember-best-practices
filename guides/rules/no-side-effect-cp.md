@@ -7,7 +7,7 @@ When we send actions in computed properties we are violating this pattern which 
 1. When I first access this property send an action
 2. This action will not fire again unless the dependent key of this computed property changes.
 
-The fact that property access could cause some side effect to occur is less than ideal as it forces you to write code that reacts to data changing over time instead of controlling the side effects based on user input into the system. Often when we see this pattern we see that one component is responsible for displaying the data and another, unrelated component handles the action. This then forces a developer to look in mutliple places to understand how the component works. We can see this in the following example
+The fact that property access could cause some side effect to occur is less than ideal as it forces you to write code that reacts to data changing over time instead of controlling the side effects based on user input into the system. Often when we see this pattern we see that one component is responsible for displaying the data and another, unrelated component handles the action. This then forces a developer to look in multiple places to understand how the component works. We can see this in the following example
 
 ```
 <input value={{firstName}} />
