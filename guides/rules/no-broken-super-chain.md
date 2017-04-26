@@ -2,7 +2,7 @@
 
 ## Rule name: `no-broken-super-chain`
 
-If you are overriding the `init` lifecycle hook in Ember modules like Component, Mixin, etc. it is necessary that you include a call to `_super`
+If you are overriding the `init` lifecycle hook in Ember classes like Component, Mixin, etc. it is necessary that you include a call to `_super`.
 
 ```javascript
 // GOOD
