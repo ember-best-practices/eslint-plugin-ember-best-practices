@@ -12,6 +12,7 @@ module.exports = {
   extends: require.resolve('./recommended.js'),
   rules: {
     // Experimental rules
-    'ember-best-practices/no-2.0.0-hooks': 2
+    'ember-best-practices/no-2.0.0-hooks': 2,
+    'ember-best-practices/no-send-action': 2
   }
 };
