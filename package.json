@@ -8,6 +8,7 @@
     "test": "tests"
   },
   "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc mocha --recursive tests",
     "test-server": "mocha --recursive --growl --watch tests"
   },
@@ -23,6 +24,7 @@
     "eslint-plugin"
   ],
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "eslint": "^3.11.1",
     "mocha": "^3.2.0",
     "mocha-eslint": "^3.0.1",
