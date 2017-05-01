@@ -1,5 +1,8 @@
 # Ember Best Practices
 
+[![Build Status](https://travis-ci.org/ember-best-practices/eslint-plugin-ember-best-practices.svg?branch=master)](https://travis-ci.org/ember-best-practices/eslint-plugin-ember-best-practices)
+[![npm version](https://badge.fury.io/js/eslint-plugin-ember-best-practices.svg)](https://badge.fury.io/js/eslint-plugin-ember-best-practices)
+
 This adds more guard rails for Ember. Just because something "works" does not mean it is correct or in line with the framework's programming model. These footguns include:
 
 - Not adhereing to Data Down Actions Up
