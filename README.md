@@ -37,7 +37,7 @@ ember install ember-cli-eslint
 
 The `ember-cli-eslint` addon blueprint generates a .eslintrc.js configuration file at the root of the project.
 
-Add the plugin's [recommended](https://github.com/chadhietala/ember-best-practices/blob/master/config/recommended.js) configuration to the list of extensions:
+Add the plugin's [recommended](https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/blob/master/config/recommended.js) configuration to the list of extensions:
 
 ```
 // .eslintrc.js
