@@ -12,7 +12,7 @@
     "test": "nyc mocha --recursive tests",
     "test-server": "mocha --recursive --growl --watch tests"
   },
-  "repository": "chadhietala/ember-best-practices",
+  "repository": "ember-best-practices/eslint-plugin-ember-best-practices",
   "engines": {
     "node": ">= 6.0.0"
   },
