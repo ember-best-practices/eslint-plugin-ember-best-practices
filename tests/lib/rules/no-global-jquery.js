@@ -90,6 +90,38 @@ ruleTester.run('no-global-jquery', rule, {
       errors: [{
         message: MESSAGE
       }]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            this.el = jQuery('.test');
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          actions: {
+            invalid1() {
+              this.inv1 = jQuery('.invalid1');
+            }
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
     }
   ]
 });
