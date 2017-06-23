@@ -2,6 +2,10 @@ const rule = require('../../../lib/rules/require-ember-lifeline');
 const getMessage = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
+const parserOptions = {
+  ecmaVersion: 6,
+  sourceType: 'module'
+};
 
 ruleTester.run('require-ember-lifeline', rule, {
   valid: [
@@ -16,10 +20,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -34,10 +35,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -50,10 +48,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -68,10 +63,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -84,10 +76,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -102,10 +91,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     }
   ],
   invalid: [
@@ -120,10 +106,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('Ember.run.later')
       }]
@@ -141,10 +124,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('Ember.run.later')
       }]
@@ -160,10 +140,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('run.later')
       }]
@@ -181,10 +158,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('run.later')
       }]
@@ -204,10 +178,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('foo.later')
       }]
@@ -229,10 +200,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('foo.later')
       }]
@@ -248,10 +216,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('Ember.run.debounce')
       }]
@@ -269,10 +234,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('Ember.run.debounce')
       }]
@@ -288,10 +250,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('run.debounce')
       }]
@@ -309,10 +268,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('run.debounce')
       }]
@@ -332,10 +288,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('foo.debounce')
       }]
@@ -357,10 +310,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('foo.debounce')
       }]
@@ -376,10 +326,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('Ember.run.throttle')
       }]
@@ -397,10 +344,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('Ember.run.throttle')
       }]
@@ -416,10 +360,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('run.throttle')
       }]
@@ -437,10 +378,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('run.throttle')
       }]
@@ -460,10 +398,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('foo.throttle')
       }]
@@ -485,10 +420,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: getMessage('foo.throttle')
       }]
