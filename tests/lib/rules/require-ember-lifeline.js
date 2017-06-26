@@ -103,7 +103,7 @@ ruleTester.run('require-ember-lifeline', rule, {
           init() {
             Ember.run.later(() => {
               doSomeWork();
-            });
+            }, 100);
           }
         });`,
       parserOptions,
@@ -120,7 +120,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             foo() {
               Ember.run.later(() => {
                 doSomeWork();
-              });
+              }, 100);
             }
           }
         });`,
@@ -137,7 +137,7 @@ ruleTester.run('require-ember-lifeline', rule, {
           init() {
             run.later(() => {
               doSomeWork();
-            });
+            }, 100);
           }
         });`,
       parserOptions,
@@ -154,7 +154,7 @@ ruleTester.run('require-ember-lifeline', rule, {
             foo() {
               run.later(() => {
                 doSomeWork();
-              });
+              }, 100);
             }
           }
         });`,
@@ -175,7 +175,7 @@ ruleTester.run('require-ember-lifeline', rule, {
           init() {
             foo.later(() => {
               doSomeWork();
-            });
+            }, 100);
           }
         });`,
       parserOptions,
@@ -196,13 +196,123 @@ ruleTester.run('require-ember-lifeline', rule, {
             bar() {
               foo.later(() => {
                 doSomeWork();
-              });
+              }, 100);
             }
           }
         });`,
       parserOptions,
       errors: [{
         message: getMessage('foo.later')
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        export default Ember.Component({
+          init() {
+            Ember.run.next(() => {
+              doSomeWork();
+            });
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: getMessage('Ember.run.next')
+      }]
+    },
+    {
+      code: `        
+        import Ember from 'ember';
+
+        export default Ember.Component({
+          actions: {
+            foo() {
+              Ember.run.next(() => {
+                doSomeWork();
+              });
+            }
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: getMessage('Ember.run.next')
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        export default Ember.Component({
+          init() {
+            run.next(() => {
+              doSomeWork();
+            });
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: getMessage('run.next')
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        export default Ember.Component({
+          actions: {
+            foo() {
+              run.next(() => {
+                doSomeWork();
+              });
+            }
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: getMessage('run.next')
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        const {
+          run: foo
+        } = Ember;
+
+        export default Ember.Component({
+          init() {
+            foo.next(() => {
+              doSomeWork();
+            });
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: getMessage('foo.next')
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        const {
+          run: foo
+        } = Ember;
+
+        export default Ember.Component({
+          actions: {
+            bar() {
+              foo.next(() => {
+                doSomeWork();
+              });
+            }
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: getMessage('foo.next')
       }]
     },
     {
