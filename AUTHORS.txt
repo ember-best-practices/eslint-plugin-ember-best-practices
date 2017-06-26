@@ -1,0 +1,23 @@
+Chad Hietala <chadhietala@gmail.com>
+Chris Thoburn <runspired@users.noreply.github.com>
+David J. Hamilton <github@hjdivad.com>
+Edilberto Ruvalcaba <eruvalcaba@linkedin.com>
+Ilya Radchenko <knownasilya@gmail.com>
+Justin Lan <julan@linkedin.com>
+Katie Gengler <katie@kmg.io>
+Kyle Turney <turney.kyle@gmail.com>
+Marc Lynch <lynchbomb@users.noreply.github.com>
+Mikael Riska <mikael.riska@ecraft.com>
+Quinn C. Hoyer <qhoyer@linkedin.com>
+Ryunosuke Sato <tricknotes.rs@gmail.com>
+Sean Johnson <seanjohnson08@gmail.com>
+Sean Johnson <sejohnson@linkedin.com>
+Stefan Penner <stefan.penner@gmail.com>
+Steve Calvert <scalvert@linkedin.com>
+Steve Calvert <steve.calvert@gmail.com>
+Tomster <tomster@emberjs.com>
+Trent Willis <trentmwillis@gmail.com>
+Trent Willis <twillis@linkedin.com>
+Zhongliang Wang <Cryrivers@users.noreply.github.com>
+bravo-kernel <bravo-kernel@users.noreply.github.com>
+shamcode <shamcode@gmail.com>
