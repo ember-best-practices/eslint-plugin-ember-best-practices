@@ -2,6 +2,10 @@ const rule = require('../../../lib/rules/no-global-jquery');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester();
+const parserOptions = {
+  ecmaVersion: 6,
+  sourceType: 'module'
+};
 
 ruleTester.run('no-global-jquery', rule, {
   valid: [
@@ -12,10 +16,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.v1 = Ember.$('.v1');
           },
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -24,10 +25,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.v2 = this.$();
           },
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -38,10 +36,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -52,10 +47,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      parserOptions
     },
     {
       code: `
@@ -68,10 +60,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = $('.test');
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -89,10 +78,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -108,10 +94,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = foo('.test');
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -129,10 +112,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -146,10 +126,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = $('.test');
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -163,10 +140,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -178,10 +152,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = jQuery('.test');
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -195,10 +166,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
+      parserOptions,
       errors: [{
         message: MESSAGE
       }]
