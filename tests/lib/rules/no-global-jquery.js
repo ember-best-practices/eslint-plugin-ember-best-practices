@@ -56,6 +56,86 @@ ruleTester.run('no-global-jquery', rule, {
         ecmaVersion: 6,
         sourceType: 'module'
       }
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        const { $ } = Ember;
+
+        export default Ember.Component({
+          init() {
+            this.el = $('.test');
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        const { $ } = Ember;
+
+        export default Ember.Component({
+          actions: {
+            valid() {
+              this.inv1 = $('.invalid1');
+            }
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        const { $: foo } = Ember;
+
+        export default Ember.Component({
+          init() {
+            this.el = foo('.test');
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+
+        const { $: foo } = Ember;
+
+        export default Ember.Component({
+          actions: {
+            valid() {
+              this.inv1 = foo('.invalid1');
+            }
+          }
+        });`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      },
+      errors: [{
+        message: MESSAGE
+      }]
     }
   ],
   invalid: [
