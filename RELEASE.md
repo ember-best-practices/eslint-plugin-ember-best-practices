@@ -2,7 +2,7 @@
 
 The following is the release process you should follow to publish a new version of `eslint-plugin-ember-best-practices`.
 
-## Update The Changelog
+## Preparing for Release
 
 First, we need to update the `CHANGELOG.md` file for the project. This requires having [`git-extras`](https://github.com/tj/git-extras) installed.
 
@@ -14,10 +14,18 @@ git changelog
 
 Clean up the generated changelog by inserting the appropriate verion number and removing merge commits and previous release commits if necessary.
 
-Review the changes and then commit them with a message like:
+Next, we need to update `AUTHORS.txt` to make sure we acknowledge all our wonderful contributors. Simply run:
 
 ```bash
-git commit -am "Update CHANGELOG for x.x.x"
+npm run generate-authors
+```
+
+That should update `AUTHORS.txt` with a sorted list of names and email address based on the git history of the repo.
+
+Review all the changes so far and then commit them with a message like:
+
+```bash
+git commit -am "Update CHANGELOG and AUTHORS for x.x.x"
 ```
 
 Where `x.x.x` is the version you are releasing.
