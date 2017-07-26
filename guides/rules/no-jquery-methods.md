@@ -4,3 +4,20 @@
 
 Provides the ability to blacklist a set of jQuery methods for deprecation. 
 The eventual goal being a complete removal of jQuery.
+
+# Usage
+
+Pass an argument array containing the specific blacklisted jQuery methods your consuming application is flagging for. 
+
+```js
+const BLACKLIST = [
+ -  'add',
+ -  'addBack',
+ -  'after',
+ -  'ajaxComplete'
+];
+
+rules: {
+  'ember-best-practices/no-jquery-methods': [2, [BLACKLIST]]
+}
+```
