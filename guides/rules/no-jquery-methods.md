@@ -18,6 +18,6 @@ const BLACKLIST = [
 ];
 
 rules: {
-  'ember-best-practices/no-jquery-methods': [2, [BLACKLIST]]
+  'ember-best-practices/no-jquery-methods': [2, BLACKLIST]
 }
 ```
