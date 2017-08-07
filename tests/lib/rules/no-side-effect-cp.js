@@ -20,6 +20,15 @@ ruleTester.run('no-side-efffect-cp', rule, {
         ecmaVersion: 6,
         sourceType: 'module'
       }
+    },
+    {
+      code: `
+        import EmberObject from '@ember/object';
+        export default EmberObject();`,
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module'
+      }
     }
   ],
   invalid: [
