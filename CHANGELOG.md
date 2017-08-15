@@ -1,4 +1,13 @@
 
+0.8.0 / 2017-08-15
+==================
+
+  * Add test for rule `no-side-effect-cp`
+  * Fix `imports` util
+  * Update guide for `no-jquery-method`
+  * Update default BLACKLIST from config `no-jquery`
+  * Fix RELEASE.md
+
 0.7.1 / 2017-06-27
 ==================
 
