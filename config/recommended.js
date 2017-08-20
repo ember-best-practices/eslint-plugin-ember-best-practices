@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     // Custom rules
     'ember-best-practices/no-side-effect-cp': 2,
+    'ember-best-practices/no-anonymous-once': 2,
     'ember-best-practices/no-attrs': 2,
     'ember-best-practices/no-observers': 2,
     'ember-best-practices/require-dependent-keys': 2,
