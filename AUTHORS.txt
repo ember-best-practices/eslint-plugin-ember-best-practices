@@ -2,13 +2,16 @@ Burnashov Evgeny <sham@sveak.com>
 Chad Hietala <chadhietala@gmail.com>
 Chris Thoburn <runspired@users.noreply.github.com>
 David J. Hamilton <github@hjdivad.com>
+Edilberto Ruvalcaba <eddie.ruva@gmail.com>
 Edilberto Ruvalcaba <eruvalcaba@linkedin.com>
 Ilya Radchenko <knownasilya@gmail.com>
 Justin Lan <julan@linkedin.com>
 Katie Gengler <katie@kmg.io>
 Kyle Turney <turney.kyle@gmail.com>
 Marc Lynch <lynchbomb@users.noreply.github.com>
+Marc Lynch <lynchmarc2@gmail.com>
 Mikael Riska <mikael.riska@ecraft.com>
+Nathaniel Furniss <nlfurniss@gmail.com>
 Quinn C. Hoyer <qhoyer@linkedin.com>
 Robert Jackson <me@rwjblue.com>
 Ryunosuke Sato <tricknotes.rs@gmail.com>
