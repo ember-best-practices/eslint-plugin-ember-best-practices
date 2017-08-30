@@ -34,7 +34,25 @@ ruleTester.run('no-jquery-methods', rule, {
         export default Ember.Component({
           init() {
             const myObj = {};
-            myObj[${BLACKLISTMETHOD}]();      
+            myObj[${BLACKLISTMETHOD}]();
+          }
+        });`,
+      options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            this.$.notBlacklistedMethod();
+          }
+        });`,
+      options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            Ember.$.notBlacklistedMethod();
           }
         });`,
       options: [BLACKLISTMETHOD]
@@ -109,7 +127,7 @@ ruleTester.run('no-jquery-methods', rule, {
         export default Ember.Component({
           init() {
             const myJQueryObj = this.$();
-            myJQueryObj[${BLACKLISTMETHOD}]();      
+            myJQueryObj[${BLACKLISTMETHOD}]();
           }
         });`,
       options: [BLACKLISTMETHOD],
@@ -129,6 +147,30 @@ ruleTester.run('no-jquery-methods', rule, {
       options: [BLACKLISTMETHOD],
       errors: [{
         message: getMessage(BLACKLISTMETHOD)
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            this.$.add();
+          }
+        });`,
+      options: [BLACKLISTMETHOD],
+      errors: [{
+        message: getMessage(`$.${BLACKLISTMETHOD}()`)
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            Ember.$.add();
+          }
+        });`,
+      options: [BLACKLISTMETHOD],
+      errors: [{
+        message: getMessage(`$.${BLACKLISTMETHOD}()`)
       }]
     }
   ]
