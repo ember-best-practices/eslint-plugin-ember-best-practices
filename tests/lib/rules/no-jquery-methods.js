@@ -52,10 +52,28 @@ ruleTester.run('no-jquery-methods', rule, {
       code: `
         export default Ember.Component({
           init() {
+            Ember.$.notBlacklistedMethod();
+          }
+        });`,
+      options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
             Ember.get().add();
           }
         });`,
       options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            this.$().add();
+          }
+        });`,
+      options: []
     }
   ],
   invalid: [
