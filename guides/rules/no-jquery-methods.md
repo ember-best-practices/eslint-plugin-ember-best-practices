@@ -11,13 +11,13 @@ Pass an argument array containing the specific blacklisted jQuery methods your c
 
 ```js
 const BLACKLIST = [
- -  'add',
- -  'addBack',
- -  'after',
- -  'ajaxComplete'
+  'add',
+  'addBack',
+  'after',
+  'ajaxComplete'
 ];
 
 rules: {
-  'ember-best-practices/no-jquery-methods': [2, BLACKLIST]
+  'ember-best-practices/no-jquery-methods': ['error', BLACKLIST]
 }
 ```
