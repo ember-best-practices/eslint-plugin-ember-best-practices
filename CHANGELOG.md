@@ -1,4 +1,12 @@
 
+0.9.0 / 2017-08-31
+==================
+
+  * Fixing rule `no-jquery-methods` to remove reference to `Ember`
+  * Add tests for rule `no-jquery-methods`
+  * Update docs and rule `no-jquery-methods` to include checks for CallExpressions
+  * Adding new rule: `no-anonymous-once`
+
 0.8.0 / 2017-08-15
 ==================
 
