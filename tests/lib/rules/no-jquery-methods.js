@@ -56,6 +56,24 @@ ruleTester.run('no-jquery-methods', rule, {
           }
         });`,
       options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            Ember.get().add();
+          }
+        });`,
+      options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          init() {
+            this.$().add();
+          }
+        });`,
+      options: []
     }
   ],
   invalid: [
