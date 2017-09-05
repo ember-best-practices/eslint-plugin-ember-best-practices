@@ -92,6 +92,16 @@ ruleTester.run('no-jquery-methods', rule, {
           }
         });`,
       options: [BLACKLISTMETHOD]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          myFunc() {
+            const output = this.privateMethod();
+            this.$elem.style.height1 = output.height;
+          }
+        });`,
+      options: ['height']
     }
   ],
   invalid: [
