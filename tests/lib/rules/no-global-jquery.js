@@ -11,6 +11,36 @@ ruleTester.run('no-global-jquery', rule, {
   valid: [
     {
       code: `
+        import Ember from 'ember';
+        const $ = Ember.$;
+
+        export default Ember.Component({
+          func() {
+            $('.class').focus();
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        import Ember from 'ember';
+        const jQuery = Ember.$;
+
+        export default Ember.Component({
+          func() {
+            jQuery('.class').focus();
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
         export default Ember.Component({
           valid1() {
             this.v1 = Ember.$('.v1');
