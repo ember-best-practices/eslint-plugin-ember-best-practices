@@ -11,33 +11,13 @@ ruleTester.run('no-global-jquery', rule, {
   valid: [
     {
       code: `
-        import Ember from 'ember';
-        const $ = Ember.$;
-
-        export default Ember.Component({
-          func() {
-            $('.class').focus();
+        export default Component.extend({
+          focusWithJQuery() {
+            const find = Ember.$;
+            find('.class').focus();
           }
-        });`,
-      parserOptions,
-      errors: [{
-        message: MESSAGE
-      }]
-    },
-    {
-      code: `
-        import Ember from 'ember';
-        const jQuery = Ember.$;
-
-        export default Ember.Component({
-          func() {
-            jQuery('.class').focus();
-          }
-        });`,
-      parserOptions,
-      errors: [{
-        message: MESSAGE
-      }]
+        })`,
+      parserOptions
     },
     {
       code: `
@@ -90,10 +70,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = $('.test');
           }
         });`,
-      parserOptions,
-      errors: [{
-        message: MESSAGE
-      }]
+      parserOptions
     },
     {
       code: `
@@ -108,10 +85,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions,
-      errors: [{
-        message: MESSAGE
-      }]
+      parserOptions
     },
     {
       code: `
@@ -124,10 +98,7 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = foo('.test');
           }
         });`,
-      parserOptions,
-      errors: [{
-        message: MESSAGE
-      }]
+      parserOptions
     },
     {
       code: `
@@ -142,10 +113,7 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions,
-      errors: [{
-        message: MESSAGE
-      }]
+      parserOptions
     }
   ],
   invalid: [
@@ -196,6 +164,91 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        const jayQuery = $;
+        export default Ember.Component({
+          badFun() {
+            jayQuery('.class');
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        const jayQuery = $;
+        export default Ember.Component({
+          badFun() {
+            jayQuery.ajax();
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        const jayQuery = jQuery;
+        export default Ember.Component({
+          badFun() {
+            jayQuery('.class');
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        const jayQuery = jQuery;
+        export default Ember.Component({
+          badFun() {
+            jayQuery.ajax();
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component({
+          func() {
+            let a = jQuery;
+            let b = 'notDollarSign';
+
+            a('.find-me').click();
+          }
+        });`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        export default Component.extend({
+          doStuffWithJQuery() {
+            let find = jQuery;
+            find('.class').focus();
+          },
+
+          nonJQueryStuff() {
+            let find = document.querySelector;
+            find('.class').focus();
+          }
+        })`,
       parserOptions,
       errors: [{
         message: MESSAGE
