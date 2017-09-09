@@ -13,8 +13,48 @@ ruleTester.run('no-global-jquery', rule, {
       code: `
         export default Component.extend({
           focusWithJQuery() {
+            const $ = Ember.$;
+            $('.class').focus();
+          }
+        })`,
+      parserOptions
+    },
+    {
+      code: `
+        export default Component.extend({
+          focusWithJQuery() {
+            const Jquery = Ember.$;
+            Jquery('.class').focus();
+          }
+        })`,
+      parserOptions
+    },
+    {
+      code: `
+        export default Component.extend({
+          focusWithJQuery() {
             const find = Ember.$;
             find('.class').focus();
+          }
+        })`,
+      parserOptions
+    },
+    {
+      code: `
+        const $ = Ember.$;
+        export default Component.extend({
+          focusWithJQuery() {
+            $('.class').focus();
+          }
+        })`,
+      parserOptions
+    },
+    {
+      code: `
+        const jQuery = Ember.$;
+        export default Component.extend({
+          focusWithJQuery() {
+            jQuery('.class').focus();
           }
         })`,
       parserOptions
@@ -54,6 +94,28 @@ ruleTester.run('no-global-jquery', rule, {
           actions: {
             valid4() {
               this.v4 = this.$('v4');
+            }
+          }
+        });`,
+      parserOptions
+    },
+    {
+      code: `
+        export default Ember.Component({
+          actions: {
+            valid4() {
+              const elem = this.$();
+            }
+          }
+        });`,
+      parserOptions
+    },
+    {
+      code: `
+        export default Ember.Component({
+          actions: {
+            valid4() {
+              const classElem = this.$('.class');
             }
           }
         });`,
@@ -247,6 +309,92 @@ ruleTester.run('no-global-jquery', rule, {
           nonJQueryStuff() {
             let find = document.querySelector;
             find('.class').focus();
+          }
+        })`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        export default Component.extend({
+          nonJQueryStuff() {
+            let find = document.querySelector;
+            find('.class').focus();
+
+          },
+
+          doStuffWithJQuery() {
+            let find = jQuery;
+            find('.class').focus();
+          }
+        })`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        let find = Ember.$;
+        export default Component.extend({
+          nonJQueryStuff() {
+            let find = document.querySelector;
+            find('.class').focus();
+
+          },
+
+          doStuffWithJQuery() {
+            let find = jQuery;
+            find('.class').focus();
+          }
+        })`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        let find = $;
+        export default Component.extend({
+          nonJQueryStuff() {
+            let find = document.querySelector;
+            find('.class').focus();
+
+          },
+
+          doStuffWithJQuery() {
+            find('.class').focus();
+          }
+        })`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        const $ = jQuery;
+        export default Component.extend({
+          focusWithJQuery() {
+            let $ = Ember.$;
+            $('.class').focus();
+          }
+        })`,
+      parserOptions,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+        const $ = Ember.$;
+        export default Component.extend({
+          focusWithJQuery() {
+            let $ = $;
+            $('.class').focus();
           }
         })`,
       parserOptions,
