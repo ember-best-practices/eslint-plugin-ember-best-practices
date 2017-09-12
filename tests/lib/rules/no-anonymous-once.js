@@ -44,6 +44,76 @@ ruleTester.run('no-anonymous-once', rule, {
             run.once.call(this, noop);
           }
         });`
+    },
+    {
+      code: `
+        export default Ember.Component({
+          cb: () => {
+            // do stuff
+          },
+
+          perform() {
+            Ember.run.once(this, 'cb');
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component({
+          cb: () => {
+            // do stuff
+          },
+
+          perform() {
+            Ember.run.once(this, this.cb);
+          }
+        });`
+    },
+    {
+      code: `
+        function cb() {
+          //do stuff
+        }
+        export default Ember.Component({
+          perform() {
+            Ember.run.once(this, cb);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component({
+          cb: () => {
+            // do stuff
+          },
+
+          perform() {
+            Ember.run.scheduleOnce('afterRender', this, 'cb');
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component({
+          cb: () => {
+            // do stuff
+          },
+
+          perform() {
+            Ember.run.scheduleOnce('afterRender', this, this.cb);
+          }
+        });`
+    },
+    {
+      code: `
+        function cb() {
+          //do stuff
+        }
+        export default Ember.Component({
+          perform() {
+            Ember.run.scheduleOnce('afterRender', this, cb);
+          }
+        });`
     }
   ],
   invalid: [
