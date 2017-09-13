@@ -218,6 +218,67 @@ ruleTester.run('no-jquery-methods', rule, {
       errors: [{
         message: getMessage(`$.${BLACKLISTMETHOD}()`)
       }]
+    },
+    {
+      code: `
+        import jQ from 'jquery';
+        const jayQuery = Ember.$;
+
+        jayQuery('.class').add();
+        jQ('.class2').add();`,
+      options: [BLACKLISTMETHOD],
+      errors: [
+        { message: getMessage(BLACKLISTMETHOD) },
+        { message: getMessage(BLACKLISTMETHOD) }
+      ]
+    },
+    {
+      code: `
+        function func1() {
+          const jayQuery = Bar.foo;
+          jayQuery().add();
+        }
+
+        function func2() {
+          const jayQuery = Ember.$;
+          jayQuery().add();
+        }
+
+        function func3() {
+          const jayQuery = Obj.method;
+          jayQuery().add();
+        }
+
+        function func4() {
+          const jayQuery = $;
+          jayQuery().add();
+        }
+
+        function func5() {
+          const jayQuery = Foo.bar;
+          jayQuery().add();
+        }`,
+      options: [BLACKLISTMETHOD],
+      errors: [
+        { message: getMessage(BLACKLISTMETHOD) },
+        { message: getMessage(BLACKLISTMETHOD) }
+      ]
+    },
+    {
+      code: `
+        import jQ from 'jquery';
+        function func1() {
+          const jayQuery = Ember.$;
+          jayQuery().add();
+        }
+
+        jQ().add();
+      `,
+      options: [BLACKLISTMETHOD],
+      errors: [
+        { message: getMessage(BLACKLISTMETHOD) },
+        { message: getMessage(BLACKLISTMETHOD) }
+      ]
     }
   ]
 });
