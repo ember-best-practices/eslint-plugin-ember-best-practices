@@ -1,4 +1,12 @@
 
+1.0.0 / 2017-09-13
+==================
+
+  * Fix `no-anonymous-once` not recognizing context function
+  * Fix `no-global-jquery` returning false positive for var assignment #85
+  * Fix logic to detect jQuery being assigned to a var
+  * Create `no-jquery-selector` rule
+
 0.9.0 / 2017-08-31
 ==================
 
