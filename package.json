@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-ember-best-practices",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Eslint rules for linting for anti-patterns in Ember applications.",
   "main": "lib/index.js",
   "directories": {
