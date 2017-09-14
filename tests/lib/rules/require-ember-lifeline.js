@@ -1,11 +1,12 @@
 const rule = require('../../../lib/rules/require-ember-lifeline');
 const getMessage = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
-const parserOptions = {
-  ecmaVersion: 6,
-  sourceType: 'module'
-};
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('require-ember-lifeline', rule, {
   valid: [
@@ -19,8 +20,7 @@ ruleTester.run('require-ember-lifeline', rule, {
               doSomeWork();
             });
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -34,8 +34,7 @@ ruleTester.run('require-ember-lifeline', rule, {
               });
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -47,8 +46,7 @@ ruleTester.run('require-ember-lifeline', rule, {
               doSomeWork();
             });
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -62,8 +60,7 @@ ruleTester.run('require-ember-lifeline', rule, {
               });
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -75,8 +72,7 @@ ruleTester.run('require-ember-lifeline', rule, {
               doSomeWork();
             });
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -90,8 +86,7 @@ ruleTester.run('require-ember-lifeline', rule, {
               });
             }
           }
-        });`,
-      parserOptions
+        });`
     }
   ],
   invalid: [
@@ -106,13 +101,12 @@ ruleTester.run('require-ember-lifeline', rule, {
             }, 100);
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.later')
       }]
     },
     {
-      code: `        
+      code: `
         import Ember from 'ember';
 
         export default Ember.Component({
@@ -124,7 +118,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.later')
       }]
@@ -140,7 +133,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }, 100);
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.later')
       }]
@@ -158,7 +150,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.later')
       }]
@@ -178,7 +169,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }, 100);
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.later')
       }]
@@ -200,7 +190,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.later')
       }]
@@ -216,13 +205,12 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.next')
       }]
     },
     {
-      code: `        
+      code: `
         import Ember from 'ember';
 
         export default Ember.Component({
@@ -234,7 +222,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.next')
       }]
@@ -250,7 +237,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.next')
       }]
@@ -268,7 +254,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.next')
       }]
@@ -288,7 +273,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.next')
       }]
@@ -310,7 +294,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.next')
       }]
@@ -326,13 +309,12 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.debounce')
       }]
     },
     {
-      code: `        
+      code: `
         import Ember from 'ember';
 
         export default Ember.Component({
@@ -344,7 +326,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.debounce')
       }]
@@ -360,7 +341,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.debounce')
       }]
@@ -378,7 +358,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.debounce')
       }]
@@ -398,7 +377,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.debounce')
       }]
@@ -420,7 +398,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.debounce')
       }]
@@ -436,13 +413,12 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.throttle')
       }]
     },
     {
-      code: `        
+      code: `
         import Ember from 'ember';
 
         export default Ember.Component({
@@ -454,7 +430,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('Ember.run.throttle')
       }]
@@ -470,7 +445,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.throttle')
       }]
@@ -488,7 +462,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('run.throttle')
       }]
@@ -508,7 +481,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             });
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.throttle')
       }]
@@ -530,7 +502,6 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: getMessage('foo.throttle')
       }]
