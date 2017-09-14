@@ -1,7 +1,12 @@
 const rule = require('../../../lib/rules/no-lifecycle-events');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('no-lifecycle-events', rule, {
   valid: [
@@ -16,11 +21,20 @@ ruleTester.run('no-lifecycle-events', rule, {
           myCustomEvent: Ember.on('customEvent', function() {
             alert('sj08');
           })
+        });`
+    },
+    {
+      code: `
+        import Ember from 'ember';
+        const { on } = $;
+        export default Ember.Component({
+          registerFocus: on('click', function() {
+            // do stuff
+          })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+      errors: [{
+        message: MESSAGE
+      }]
     }
   ],
   invalid: [
@@ -33,10 +47,6 @@ ruleTester.run('no-lifecycle-events', rule, {
             });
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -52,10 +62,6 @@ ruleTester.run('no-lifecycle-events', rule, {
             });
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -70,10 +76,6 @@ ruleTester.run('no-lifecycle-events', rule, {
             });
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -87,10 +89,6 @@ ruleTester.run('no-lifecycle-events', rule, {
             });
           }.on('didInsertElement')
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]

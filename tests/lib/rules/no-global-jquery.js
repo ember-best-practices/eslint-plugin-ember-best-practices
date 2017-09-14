@@ -1,11 +1,12 @@
 const rule = require('../../../lib/rules/no-global-jquery');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
-const parserOptions = {
-  ecmaVersion: 6,
-  sourceType: 'module'
-};
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('no-global-jquery', rule, {
   valid: [
@@ -16,8 +17,7 @@ ruleTester.run('no-global-jquery', rule, {
             const $ = Ember.$;
             $('.class').focus();
           }
-        })`,
-      parserOptions
+        })`
     },
     {
       code: `
@@ -26,8 +26,7 @@ ruleTester.run('no-global-jquery', rule, {
             const Jquery = Ember.$;
             Jquery('.class').focus();
           }
-        })`,
-      parserOptions
+        })`
     },
     {
       code: `
@@ -36,8 +35,7 @@ ruleTester.run('no-global-jquery', rule, {
             const find = Ember.$;
             find('.class').focus();
           }
-        })`,
-      parserOptions
+        })`
     },
     {
       code: `
@@ -46,8 +44,7 @@ ruleTester.run('no-global-jquery', rule, {
           focusWithJQuery() {
             $('.class').focus();
           }
-        })`,
-      parserOptions
+        })`
     },
     {
       code: `
@@ -56,8 +53,7 @@ ruleTester.run('no-global-jquery', rule, {
           focusWithJQuery() {
             jQuery('.class').focus();
           }
-        })`,
-      parserOptions
+        })`
     },
     {
       code: `
@@ -65,8 +61,7 @@ ruleTester.run('no-global-jquery', rule, {
           valid1() {
             this.v1 = Ember.$('.v1');
           },
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -74,8 +69,7 @@ ruleTester.run('no-global-jquery', rule, {
           valid2() {
             this.v2 = this.$();
           },
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -85,8 +79,7 @@ ruleTester.run('no-global-jquery', rule, {
               this.v3 = Ember.$('v3');
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -96,8 +89,7 @@ ruleTester.run('no-global-jquery', rule, {
               this.v4 = this.$('v4');
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -107,8 +99,7 @@ ruleTester.run('no-global-jquery', rule, {
               const elem = this.$();
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -118,8 +109,7 @@ ruleTester.run('no-global-jquery', rule, {
               const classElem = this.$('.class');
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -131,8 +121,7 @@ ruleTester.run('no-global-jquery', rule, {
           init() {
             this.el = $('.test');
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -146,8 +135,7 @@ ruleTester.run('no-global-jquery', rule, {
               this.inv1 = $('.invalid1');
             }
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -159,8 +147,7 @@ ruleTester.run('no-global-jquery', rule, {
           init() {
             this.el = foo('.test');
           }
-        });`,
-      parserOptions
+        });`
     },
     {
       code: `
@@ -174,8 +161,7 @@ ruleTester.run('no-global-jquery', rule, {
               this.inv1 = foo('.invalid1');
             }
           }
-        });`,
-      parserOptions
+        });`
     }
   ],
   invalid: [
@@ -186,7 +172,6 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = $('.test');
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -200,7 +185,6 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -212,7 +196,6 @@ ruleTester.run('no-global-jquery', rule, {
             this.el = jQuery('.test');
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -226,7 +209,6 @@ ruleTester.run('no-global-jquery', rule, {
             }
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -239,7 +221,6 @@ ruleTester.run('no-global-jquery', rule, {
             jayQuery('.class');
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -252,7 +233,6 @@ ruleTester.run('no-global-jquery', rule, {
             jayQuery.ajax();
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -265,7 +245,6 @@ ruleTester.run('no-global-jquery', rule, {
             jayQuery('.class');
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -278,7 +257,6 @@ ruleTester.run('no-global-jquery', rule, {
             jayQuery.ajax();
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -293,7 +271,6 @@ ruleTester.run('no-global-jquery', rule, {
             a('.find-me').click();
           }
         });`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -311,7 +288,6 @@ ruleTester.run('no-global-jquery', rule, {
             find('.class').focus();
           }
         })`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -330,7 +306,6 @@ ruleTester.run('no-global-jquery', rule, {
             find('.class').focus();
           }
         })`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -350,7 +325,6 @@ ruleTester.run('no-global-jquery', rule, {
             find('.class').focus();
           }
         })`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -369,7 +343,6 @@ ruleTester.run('no-global-jquery', rule, {
             find('.class').focus();
           }
         })`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -383,7 +356,6 @@ ruleTester.run('no-global-jquery', rule, {
             $('.class').focus();
           }
         })`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]
@@ -397,7 +369,6 @@ ruleTester.run('no-global-jquery', rule, {
             $('.class').focus();
           }
         })`,
-      parserOptions,
       errors: [{
         message: MESSAGE
       }]

@@ -1,7 +1,12 @@
 const rule = require('../../../lib/rules/no-send-action');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('no-send-action', rule, {
   valid: [
@@ -17,11 +22,7 @@ ruleTester.run('no-send-action', rule, {
               this.myAction();
             }
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     }
   ],
   invalid: [
@@ -34,10 +35,6 @@ ruleTester.run('no-send-action', rule, {
             }
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]

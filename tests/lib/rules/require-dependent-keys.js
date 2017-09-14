@@ -1,7 +1,12 @@
 const rule = require('../../../lib/rules/require-dependent-keys');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('require-dependent-keys', rule, {
   valid: [
@@ -11,11 +16,7 @@ ruleTester.run('require-dependent-keys', rule, {
           foo: Ember.computed('bar', function() {
             return this.get('bar') * 2;
           })
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     }
   ],
   invalid: [
@@ -26,10 +27,6 @@ ruleTester.run('require-dependent-keys', rule, {
             return this.get('bar') * 2;
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -41,10 +38,6 @@ ruleTester.run('require-dependent-keys', rule, {
             return this.get('bar') * 2;
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]

@@ -1,7 +1,12 @@
 const rule = require('../../../lib/rules/no-side-effect-cp');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('no-side-efffect-cp', rule, {
   valid: [
@@ -15,20 +20,12 @@ ruleTester.run('no-side-efffect-cp', rule, {
               this.set('baz', true);
             }
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
         import EmberObject from '@ember/object';
-        export default EmberObject();`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        export default EmberObject();`
     }
   ],
   invalid: [
@@ -41,10 +38,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             this.sendAction('baz')
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -58,10 +51,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             this.send('baz')
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -75,10 +64,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             this.sendEvent('baz')
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -92,10 +77,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             Ember.sendEvent('baz')
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -109,10 +90,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             Em.sendEvent('baz')
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -127,10 +104,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             sendEvent('baz')
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -144,10 +117,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             this.set('baz', 'wat');
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -161,10 +130,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             Ember.set('baz', 'wat');
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -178,10 +143,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             Em.set('baz', 'wat');
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -196,10 +157,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             set('baz', 'wat');
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -214,10 +171,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             ChadsSettingMcSetter('baz', 'wat');
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -232,10 +185,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             setProperties({ baz: 'wat' });
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -250,10 +199,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             SetAllTheThings({ baz: 'wat' });
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -267,10 +212,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             this.setProperties({ baz: 'wat' });
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
@@ -284,10 +225,6 @@ ruleTester.run('no-side-efffect-cp', rule, {
             this.trigger('suchTrigger');
           })
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
