@@ -2,7 +2,12 @@ const rule = require('../../../lib/rules/no-broken-super-chain');
 const RuleTester = require('eslint').RuleTester;
 
 const { noSuper, tooManySupers } = rule.meta.messages;
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('no-broken-super-chain', rule, {
   valid: [
@@ -16,11 +21,7 @@ ruleTester.run('no-broken-super-chain', rule, {
           somethingNotInit() {
             this.alias = this.concrete;
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
@@ -29,11 +30,7 @@ ruleTester.run('no-broken-super-chain', rule, {
             this._super(...arguments);
             this.get('foo');
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
@@ -48,11 +45,7 @@ ruleTester.run('no-broken-super-chain', rule, {
           somethingNotInit() {
             this.alias = this.concrete;
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
@@ -60,11 +53,7 @@ ruleTester.run('no-broken-super-chain', rule, {
           init() {
             this.alias = this.concrete;
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
@@ -72,11 +61,7 @@ ruleTester.run('no-broken-super-chain', rule, {
           didInsertElement() {
             this.updateBlurHandler(true);
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
@@ -85,11 +70,7 @@ ruleTester.run('no-broken-super-chain', rule, {
             this._super(...arguments);
             this.updateBlurHandler(true);
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     },
     {
       code: `
@@ -100,11 +81,7 @@ ruleTester.run('no-broken-super-chain', rule, {
           }
         });
 
-        export default foo;`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        export default foo;`
     }
   ],
   invalid: [
@@ -115,10 +92,6 @@ ruleTester.run('no-broken-super-chain', rule, {
             this.alias = this.concrete;
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: noSuper
       }]
@@ -130,10 +103,6 @@ ruleTester.run('no-broken-super-chain', rule, {
             this.get('foo');
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: noSuper
       }]
@@ -147,10 +116,6 @@ ruleTester.run('no-broken-super-chain', rule, {
     //         this.alias = this.concrete;
     //       }
     //     });`,
-    //   parserOptions: {
-    //     ecmaVersion: 6,
-    //     sourceType: 'module'
-    //   }
     // },
     // TODO
     // {
@@ -161,10 +126,6 @@ ruleTester.run('no-broken-super-chain', rule, {
     //         this._super(...arguments);
     //       }
     //     });`,
-    //   parserOptions: {
-    //     ecmaVersion: 6,
-    //     sourceType: 'module'
-    //   },
     //   errors: [{
     //     message: noThisBeforeSuper
     //   }]
@@ -178,10 +139,6 @@ ruleTester.run('no-broken-super-chain', rule, {
             this._super(...arguments);
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: tooManySupers
       }]
@@ -194,10 +151,6 @@ ruleTester.run('no-broken-super-chain', rule, {
     //         this.updateBlurHandler(true);
     //       }
     //     });`,
-    //   parserOptions: {
-    //     ecmaVersion: 6,
-    //     sourceType: 'module'
-    //   },
     //   errors: [{
     //     message: noSuper
     //   }]

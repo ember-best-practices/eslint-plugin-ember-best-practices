@@ -1,7 +1,12 @@
 const rule = require('../../../lib/rules/no-2.0.0-hooks');
 const MESSAGE = rule.meta.message;
 const RuleTester = require('eslint').RuleTester;
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  }
+});
 
 ruleTester.run('no-2.0.0-hooks', rule, {
   valid: [
@@ -15,11 +20,7 @@ ruleTester.run('no-2.0.0-hooks', rule, {
               this.set('baz', true);
             }
           }
-        });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      }
+        });`
     }
   ],
   invalid: [
@@ -111,10 +112,6 @@ ruleTester.run('no-2.0.0-hooks', rule, {
             this.nope = true;
           }
         });`,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module'
-      },
       errors: [{
         message: MESSAGE
       }]
