@@ -228,6 +228,55 @@ ruleTester.run('no-side-efffect-cp', rule, {
       errors: [{
         message: MESSAGE
       }]
+    },
+    // This test must come before any others that `import Ember from 'ember'`
+    // to illustrate the problem of the import binding being saved in module
+    // scope.
+    // see #91
+    {
+      code: `
+      import Ember from 'ember';
+      import SomethingElse from 'something-else';
+      const { set } = Ember;
+        export default Ember.Component({
+          foo: 'bar',
+          baz: false,
+          bar: Ember.computed('foo', function() {
+            set('baz', 'wat');
+          })
+        });`,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+      import Ember from 'ember';
+      const { set } = Ember;
+        export default Ember.Component({
+          foo: 'bar',
+          baz: false,
+          bar: Ember.computed('foo', function() {
+            set('baz', 'wat');
+          })
+        });`,
+      errors: [{
+        message: MESSAGE
+      }]
+    },
+    {
+      code: `
+      import E from 'ember';
+        export default E.Component({
+          foo: 'bar',
+          baz: false,
+          bar: E.computed('foo', function() {
+            E.set('baz', 'wat');
+          })
+        });`,
+      errors: [{
+        message: MESSAGE
+      }]
     }
   ]
 });
