@@ -29,7 +29,7 @@
     "eslint": "^3.11.1",
     "mocha": "^3.2.0",
     "mocha-eslint": "^3.0.1",
-    "nyc": "^10.0.0"
+    "nyc": "^11.2.1"
   },
   "dependencies": {
     "requireindex": "^1.1.0"
