@@ -7,10 +7,13 @@ const ruleTester = new RuleTester({
     sourceType: 'module'
   }
 });
+const filename = 'addon/components/my-component.js';
+const unlintableFilename = 'addon/utils/util.js';
 
 ruleTester.run('require-ember-lifeline', rule, {
   valid: [
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -23,6 +26,7 @@ ruleTester.run('require-ember-lifeline', rule, {
         });`
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -37,6 +41,7 @@ ruleTester.run('require-ember-lifeline', rule, {
         });`
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -49,6 +54,7 @@ ruleTester.run('require-ember-lifeline', rule, {
         });`
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -63,6 +69,7 @@ ruleTester.run('require-ember-lifeline', rule, {
         });`
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -75,6 +82,7 @@ ruleTester.run('require-ember-lifeline', rule, {
         });`
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -87,10 +95,26 @@ ruleTester.run('require-ember-lifeline', rule, {
             }
           }
         });`
+    },
+    {
+      filename: unlintableFilename,
+      code: `
+        import Ember from 'ember';
+
+        export default Ember.Component({
+          actions: {
+            foo() {
+              Ember.run.later(() => {
+                doSomeWork();
+              });
+            }
+          }
+        });`
     }
   ],
   invalid: [
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -106,6 +130,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -123,6 +148,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -138,6 +164,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -155,6 +182,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -174,6 +202,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -195,6 +224,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -210,6 +240,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -227,6 +258,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -242,6 +274,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -259,6 +292,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -278,6 +312,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -299,6 +334,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -314,6 +350,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -331,6 +368,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -346,6 +384,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -363,6 +402,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -382,6 +422,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -403,6 +444,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -418,6 +460,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -435,6 +478,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -450,6 +494,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -467,6 +512,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
@@ -486,6 +532,7 @@ ruleTester.run('require-ember-lifeline', rule, {
       }]
     },
     {
+      filename,
       code: `
         import Ember from 'ember';
 
