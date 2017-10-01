@@ -26,8 +26,22 @@ ruleTester.run('no-side-efffect-cp', rule, {
       code: `
         import EmberObject from '@ember/object';
         export default EmberObject();`
+    },
+    {
+      code: `
+        import lodash from 'lodash';
+        import Ember from 'ember';
+        const { set } = lodash;
+        export default Ember.Component({
+          foo: 'bar',
+          baz: false,
+          bar: Ember.computed('foo', function() {
+            set('baz', 'wat');
+          })
+        });`
     }
   ],
+
   invalid: [
     {
       code: `
@@ -235,45 +249,45 @@ ruleTester.run('no-side-efffect-cp', rule, {
     // see #91
     {
       code: `
-      import Ember from 'ember';
-      import SomethingElse from 'something-else';
-      const { set } = Ember;
-        export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            set('baz', 'wat');
-          })
-        });`,
+        import Ember from 'ember';
+        import SomethingElse from 'something-else';
+        const { set } = Ember;
+          export default Ember.Component({
+            foo: 'bar',
+            baz: false,
+            bar: Ember.computed('foo', function() {
+              set('baz', 'wat');
+            })
+          });`,
       errors: [{
         message: MESSAGE
       }]
     },
     {
       code: `
-      import Ember from 'ember';
-      const { set } = Ember;
-        export default Ember.Component({
-          foo: 'bar',
-          baz: false,
-          bar: Ember.computed('foo', function() {
-            set('baz', 'wat');
-          })
-        });`,
+        import Ember from 'ember';
+        const { set } = Ember;
+          export default Ember.Component({
+            foo: 'bar',
+            baz: false,
+            bar: Ember.computed('foo', function() {
+              set('baz', 'wat');
+            })
+          });`,
       errors: [{
         message: MESSAGE
       }]
     },
     {
       code: `
-      import E from 'ember';
-        export default E.Component({
-          foo: 'bar',
-          baz: false,
-          bar: E.computed('foo', function() {
-            E.set('baz', 'wat');
-          })
-        });`,
+        import E from 'ember';
+          export default E.Component({
+            foo: 'bar',
+            baz: false,
+            bar: E.computed('foo', function() {
+              E.set('baz', 'wat');
+            })
+          });`,
       errors: [{
         message: MESSAGE
       }]
