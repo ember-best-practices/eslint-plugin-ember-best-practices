@@ -1,4 +1,11 @@
 
+1.1.0 / 2017-10-03
+==================
+
+  * Fixes issues with imports (#91)
+  * Fixes require-ember-lifeline rule to scope it to only ember file types (#93)
+  * Merge pull request #89 from nlfurniss/dry-parserOptions
+
 1.0.0 / 2017-09-13
 ==================
 
