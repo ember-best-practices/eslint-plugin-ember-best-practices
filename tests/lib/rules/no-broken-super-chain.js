@@ -1,7 +1,7 @@
 const rule = require('../../../lib/rules/no-broken-super-chain');
 const RuleTester = require('eslint').RuleTester;
 
-const { noSuper, tooManySupers } = rule.meta.messages;
+const { noSuper, tooManySupers, argsNotPassedToSuper } = rule.meta.messages;
 const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 6,
@@ -25,6 +25,15 @@ ruleTester.run('no-broken-super-chain', rule, {
     },
     {
       code: `
+        export default Ember.Component.extend({
+          init() {
+            this._super.apply(this, arguments);
+            this.alias = this.concrete;
+          },
+        });`
+    },
+    {
+      code: `
         export default Ember.Route.extend({
           init() {
             this._super(...arguments);
@@ -43,14 +52,6 @@ ruleTester.run('no-broken-super-chain', rule, {
             this.alias = this.concrete;
           },
           somethingNotInit() {
-            this.alias = this.concrete;
-          }
-        });`
-    },
-    {
-      code: `
-        export default Ember.Service.extend({
-          init() {
             this.alias = this.concrete;
           }
         });`
@@ -87,13 +88,57 @@ ruleTester.run('no-broken-super-chain', rule, {
   invalid: [
     {
       code: `
+        export default Ember.Service.extend({
+          init() {
+            this.alias = this.concrete;
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} init`
+      }]
+    },
+    {
+      code: `
         export default Ember.Component.extend({
           init() {
             this.alias = this.concrete;
           }
         });`,
       errors: [{
-        message: noSuper
+        message: `${noSuper} init`
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          destroy() {
+            this.alias = this.concrete;
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} destroy`
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willDestroy() {
+            this.alias = this.concrete;
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} willDestroy`
+      }]
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willDestroyElement() {
+            this.alias = this.concrete;
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} willDestroyElement`
       }]
     },
     {
@@ -104,32 +149,36 @@ ruleTester.run('no-broken-super-chain', rule, {
           }
         });`,
       errors: [{
-        message: noSuper
+        message: `${noSuper} init`
       }]
     },
-    // TODO
-    // {
-    //   code: `
-    //     export default Ember.Component.extend({
-    //       init() {
-    //         this._super(); // missing '...arguments'
-    //         this.alias = this.concrete;
-    //       }
-    //     });`,
-    // },
-    // TODO
-    // {
-    //   code: `
-    //     export default Ember.Component.extend({
-    //       init() {
-    //         this.alias = this.concrete;
-    //         this._super(...arguments);
-    //       }
-    //     });`,
-    //   errors: [{
-    //     message: noThisBeforeSuper
-    //   }]
-    // },
+    {
+      code: `
+        export default Ember.Component.extend({
+          init() {
+            this._super(); // missing '...arguments'
+            this.alias = this.concrete;
+          }
+        });`,
+      errors: [{
+        message: argsNotPassedToSuper
+      }]
+    },
+    /**
+    TODO
+    {
+      code: `
+        export default Ember.Component.extend({
+          init() {
+            this.alias = this.concrete;
+            this._super(...arguments);
+          }
+        });`,
+      errors: [{
+        message: noThisBeforeSuper
+      }]
+    },
+    */
     {
       code: `
         export default Ember.Component.extend({
