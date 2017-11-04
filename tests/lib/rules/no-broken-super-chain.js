@@ -83,6 +83,22 @@ ruleTester.run('no-broken-super-chain', rule, {
         });
 
         export default foo;`
+    },
+    {
+      code: `
+        export default Ember.Component.extend(SomeMixin, {
+          init() {
+            this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          init() {
+            return this._super(...arguments);
+          }
+        });`
     }
   ],
   invalid: [
