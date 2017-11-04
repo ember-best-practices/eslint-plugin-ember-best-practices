@@ -58,14 +58,6 @@ ruleTester.run('no-broken-super-chain', rule, {
     },
     {
       code: `
-        export default Ember.Component.extend({
-          didInsertElement() {
-            this.updateBlurHandler(true);
-          }
-        });`
-    },
-    {
-      code: `
         export default MyComponent.extend({
           didInsertElement() {
             this._super(...arguments);
@@ -96,6 +88,94 @@ ruleTester.run('no-broken-super-chain', rule, {
       code: `
         export default Ember.Component.extend({
           init() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          didReceiveAttrs() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willRender() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          didInsertElement() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          didRender() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          didUpdateAttrs() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willUpdate() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          didUpdate() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willDestroy() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willDestroyElement() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          willClearRender() {
+            return this._super(...arguments);
+          }
+        });`
+    },
+    {
+      code: `
+        export default Ember.Component.extend({
+          didDestroyElement() {
             return this._super(...arguments);
           }
         });`
@@ -184,21 +264,6 @@ ruleTester.run('no-broken-super-chain', rule, {
         message: argsNotPassedToSuper
       }]
     },
-    /**
-    TODO
-    {
-      code: `
-        export default Ember.Component.extend({
-          init() {
-            this.alias = this.concrete;
-            this._super(...arguments);
-          }
-        });`,
-      errors: [{
-        message: noThisBeforeSuper
-      }]
-    },
-    */
     {
       code: `
         export default Ember.Component.extend({
@@ -211,18 +276,105 @@ ruleTester.run('no-broken-super-chain', rule, {
       errors: [{
         message: tooManySupers
       }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          didReceiveAttrs() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} didReceiveAttrs`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          willRender() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} willRender`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          didInsertElement() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} didInsertElement`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          didRender() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} didRender`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          didUpdateAttrs() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} didUpdateAttrs`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          willUpdate() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} willUpdate`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          didUpdate() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} didUpdate`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          willClearRender() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} willClearRender`
+      }]
+    },
+    {
+      code: `
+        export default MyComponent.extend({
+          didDestroyElement() {
+            this.someMethod();
+          }
+        });`,
+      errors: [{
+        message: `${noSuper} didDestroyElement`
+      }]
     }
-    // TODO
-    // {
-    //   code: `
-    //     export default MyComponent.extend({
-    //       didInsertElement() {
-    //         this.updateBlurHandler(true);
-    //       }
-    //     });`,
-    //   errors: [{
-    //     message: noSuper
-    //   }]
-    // }
   ]
 });
