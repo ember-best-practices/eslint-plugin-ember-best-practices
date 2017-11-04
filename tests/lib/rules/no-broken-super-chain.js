@@ -99,6 +99,10 @@ ruleTester.run('no-broken-super-chain', rule, {
             return this._super(...arguments);
           }
         });`
+    },
+    {
+      code: `
+        export default Foo.extend({ [lol]: function() {}});`
     }
   ],
   invalid: [
