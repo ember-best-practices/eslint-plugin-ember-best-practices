@@ -15,7 +15,9 @@ Nathaniel Furniss <nfurniss@linkedin.com>
 Nathaniel Furniss <nlfurniss@gmail.com>
 Quinn C. Hoyer <qhoyer@linkedin.com>
 Robert Jackson <me@rwjblue.com>
+Robert Jackson <rjackson@linkedin.com>
 Ryunosuke Sato <tricknotes.rs@gmail.com>
+Sang Mercado <sang.mercado@gmail.com>
 Sean Johnson <seanjohnson08@gmail.com>
 Sean Johnson <sejohnson@linkedin.com>
 Stefan Penner <stefan.penner@gmail.com>
