@@ -1,3 +1,7 @@
+1.1.1 / 2017-11-13
+==================
+
+  * Fix issues when running under eslint@4 (fixes `Cannot read property 'getFilename' of undefined`).
 
 1.1.0 / 2017-10-03
 ==================
