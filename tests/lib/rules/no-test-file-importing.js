@@ -4,8 +4,8 @@ const RuleTester = require('eslint').RuleTester;
 const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: 'module',
-  },
+    sourceType: 'module'
+  }
 });
 
 ruleTester.run('no-test-file-importing', rule, {
@@ -16,8 +16,8 @@ ruleTester.run('no-test-file-importing', rule, {
         import { module, test } from 'qunit';
 
         module('Acceptance | module', setupModule());
-      `,
-    },
+      `
+    }
   ],
   invalid: [
     {
@@ -29,9 +29,9 @@ ruleTester.run('no-test-file-importing', rule, {
       `,
       errors: [
         {
-          message: MESSAGE,
-        },
-      ],
+          message: MESSAGE
+        }
+      ]
     },
     {
       code: `
@@ -45,9 +45,9 @@ ruleTester.run('no-test-file-importing', rule, {
       `,
       errors: [
         {
-          message: MESSAGE,
-        },
-      ],
+          message: MESSAGE
+        }
+      ]
     },
     {
       code: `
@@ -58,9 +58,9 @@ ruleTester.run('no-test-file-importing', rule, {
       `,
       errors: [
         {
-          message: MESSAGE,
-        },
-      ],
-    },
-  ],
+          message: MESSAGE
+        }
+      ]
+    }
+  ]
 });
