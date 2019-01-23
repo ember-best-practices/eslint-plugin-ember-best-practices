@@ -6,7 +6,7 @@
 
 This adds more guard rails for Ember. Just because something "works" does not mean it is correct or in line with the framework's programming model. These footguns include:
 
-- Not adhereing to Data Down Actions Up
+- Not adhering to Data Down Actions Up
 - Side-effect programming
 - Usage of observers
 - Usage of attrs.*
