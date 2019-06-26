@@ -15,4 +15,4 @@ However, for computed properties to work correctly you must enumerate the proper
 If you do not, you run the risk of the Computed Property cache being stale or eagerly computed.
 This rule makes sure that when you use a computed property you list its dependent keys.
 
-A computed property without dependent keys is only initilized once. If that is the desired behavior, you should instead initialize the property in `init()`.
+A computed property without dependent keys is only initialized once. If that is the desired behavior, you should instead initialize the property in `init()`.
