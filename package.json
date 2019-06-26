@@ -4,7 +4,7 @@
   "description": "Eslint rules for linting for anti-patterns in Ember applications.",
   "main": "lib/index.js",
   "directories": {
-    "doc": "doc",
+    "lib": "lib",
     "test": "tests"
   },
   "scripts": {
@@ -13,7 +13,10 @@
     "test-server": "mocha --recursive --growl --watch tests",
     "generate-authors": "git shortlog -sne | cut -f 2 | sort | uniq > AUTHORS.txt"
   },
-  "repository": "ember-best-practices/eslint-plugin-ember-best-practices",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ember-best-practices/eslint-plugin-ember-best-practices.git"
+  },
   "engines": {
     "node": ">= 6.0.0"
   },
@@ -34,5 +37,9 @@
   },
   "dependencies": {
     "requireindex": "^1.1.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/issues"
+  },
+  "homepage": "https://github.com/ember-best-practices/eslint-plugin-ember-best-practices#readme"
 }
