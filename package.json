@@ -25,6 +25,7 @@
     "eslint-plugin"
   ],
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
     "coveralls": "^2.13.1",
     "eslint": "^4.11.0",
     "mocha": "^3.2.0",
