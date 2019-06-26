@@ -1,3 +1,23 @@
+## v1.1.2 (2019-06-26)
+
+#### :bug: Bug Fix
+* [#104](https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/pull/104) Ensure require-dependent-keys works with @computed. ([@rwjblue](https://github.com/rwjblue))
+
+#### :memo: Documentation
+* [#98](https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/pull/98) Update require-dependent-keys.md ([@jrowlingson](https://github.com/jrowlingson))
+* [#102](https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/pull/102) Add bad example to no-attrs-snapshot.md ([@steventsao](https://github.com/steventsao))
+* [#101](https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/pull/101) fix typo ([@efx](https://github.com/efx))
+
+#### :house: Internal
+* [#96](https://github.com/ember-best-practices/eslint-plugin-ember-best-practices/pull/96) Bump to latest Eslint ([@nlfurniss](https://github.com/nlfurniss))
+
+#### Committers: 5
+- Eli Flanagan ([@efx](https://github.com/efx))
+- Jack Rowlingson ([@jrowlingson](https://github.com/jrowlingson))
+- Nathaniel Furniss ([@nlfurniss](https://github.com/nlfurniss))
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+- Steven Tsao ([@steventsao](https://github.com/steventsao))
+
 1.1.1 / 2017-11-13
 ==================
 
